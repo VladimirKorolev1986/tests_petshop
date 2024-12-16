@@ -17,6 +17,10 @@ def new_user():
     }
     response = requests.post(f'{BASE_URL}/user', json=data)
     assert response.status_code == 200
+
+    # Получаем данные пользователя по имени пользователя
+    response = requests.get(f'{BASE_URL}/user/{data["username"]}')
+    assert response.status_code == 200
     return response.json()
 
 
